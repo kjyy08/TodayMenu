@@ -40,7 +40,7 @@ npm install
 
 [Google AI Studio](https://ai.google.dev/gemini-api/docs/api-key?hl=ko) 사이트 접속 후 `Google AI Studio에서 Gemini API 키 받기` 버튼을 클릭해 API 키를 발급받습니다.
 
-![Image](https://github.com/user-attachments/assets/3f069429-02e1-423e-a6eb-378096e73f7c)
+![Image](https://github.com/user-attachments/assets/a8a0fef0-9a34-45e2-86f3-794480ebc8c2)
 
 4. 환경변수 설정
 
