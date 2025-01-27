@@ -3,8 +3,8 @@ name: schedule
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 12 * * *"
-    - cron: "0 18 * * *"
+    - cron: "0 3 * * *" # 서울 시간 12:00 -> UTC 3:00
+    - cron: "0 9 * * *" # 서울 시간 18:00 -> UTC 9:00
 
 jobs:
   make-issue:
@@ -13,6 +13,9 @@ jobs:
       issues: write
 
     steps:
+      - name: 타임존 설정
+        run: sudo timedatectl set-timezone Asia/Seoul
+
       - name: 저장소 체크아웃
         uses: actions/checkout@v4
 
