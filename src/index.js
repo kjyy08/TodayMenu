@@ -68,8 +68,8 @@ async function getRecommendedMenu(location, date, weather) {
   const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEMINI_API_KEY);
 
   const generationConfig = {
-    temperature: 0.8,
-    top_p: 0.9,
+    temperature: 2.0,
+    top_p: 1.0,
     maxOutputTokens: 600,
   };
 
