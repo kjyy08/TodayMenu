@@ -1,3 +1,5 @@
+# node.js 패키지 관련
 node_modules
 
+# 환경변수 관련
 .env
