@@ -3,7 +3,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import axios from "axios";
 import * as cheerio from "cheerio";
 
-const location = "서울"; //  메뉴 추천 지역은 서울로 고정
+const location = "서울"; // 지역은 서울로 고정
 const url = `https://www.weather.go.kr/w/theme/world-weather.do?continentCode=C01&countryCode=127&cityCode=231`; // 기상청 날씨 웹 URL
 
 /**
