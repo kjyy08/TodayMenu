@@ -16,7 +16,7 @@
 
 - `Node.js`: 자바스크립트 실행
 - `cheerio`: 기상청 날씨 데이터 크롤링
-- `Google Gemini API`: 날씨, 시간, 계절 기반 음식 메뉴 추천
+- `Google Gemini API(gemini-exp-1206)`: 날씨, 시간, 계절 기반 음식 메뉴 추천
 - `GitHub Actions`: 매일 정해진 시간에 스크립트 실행 및 이슈 생성
 
 ## 🚀시작하기

@@ -131,7 +131,7 @@ async function createGithubIssue(menu) {
     const weather = await getWeather(); // 날씨 가져오기
     const date = await getDate(); //  오늘 날짜 및 현재 시간 가져오기
     const recommendedMenu = await getRecommendedMenu(location, date, weather); // 메뉴 추천
-    //await createGithubIssue(recommendedMenu); // GitHub Issue 생성
+    await createGithubIssue(recommendedMenu); // GitHub Issue 생성
   } catch (error) {
     console.error("오류 발생:", error.message);
   }
