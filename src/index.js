@@ -65,22 +65,24 @@ async function getDate() {
  */
 async function getRecommendedMenu(location, date, weather) {
   // Access your API key as an environment variable (see "Set up your API key" above)
-  const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEMINI_API_KEY);
+  // const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEMINI_API_KEY);
+  const genAI = new GoogleGenerativeAI(
+    "AIzaSyCUPF4fX8S7S7vXeHTdeYKi_0noggu1K2c"
+  );
 
   const generationConfig = {
-    temperature: 2.0,
-    top_p: 1.0,
-    maxOutputTokens: 600,
+    temperature: 0.8,
+    top_p: 0.9,
+    maxOutputTokens: 800,
   };
 
   // The Gemini 1.5 models are versatile and work with most use cases
   const model = genAI.getGenerativeModel({
-    model: "gemini-1.5-flash",
+    model: "gemini-exp-1206",
     generationConfig,
-    // responseSchema로 출력 형식 json으로 지정가능한데 지금은 굳이..?,
   });
 
-  const promptContent = `오늘 ${date.year}.년${date.month}월.${date.date}일 ${date.hour}시 ${date.min}분 ${location}의 날씨는 ${weather.weatherCondition}이고 온도는 ${weather.temperature}야. 날씨와 계절 그리고 시간을 고려해서 배달시켜 먹기 좋은 메뉴 3가지를 다양하게 추천하고 간단한 이유를 작성해`;
+  const promptContent = `오늘 ${date.year}.년${date.month}월.${date.date}일 ${date.hour}시 ${date.min}분 ${location}의 날씨는 ${weather.weatherCondition}이고 온도는 ${weather.temperature}도야. 날씨와 계절 그리고 시간을 고려해서 배달시켜 먹기 좋은 식사 메뉴 3가지를 다양하게 추천하고 메뉴명과 함께 간단한 추천 이유를 작성해.`;
   const promptForm = `출력 형식은 다음과 같이 출력해. 1. 시간에 어울리는 음식 추천 문구를 {suggestedFoodText}에 점심이면 "오늘의 점메추는" 저녁이면 "오늘의 저메추는"으로 시작해서 이어서 작성해. 2. {weatherCondition}에는 현재 날씨를 문구로 나타내. 3. 위의 내용을 참고해서 다음 마크다운 문법으로 출력해. ## 오늘 뭐 먹지?</br>yyyy년 d월 d일 {hour}시 {minutes}분 {location}의 날씨는 {temperature}℃이고, {weatherCondition}. {suggestedFoodText}</br>1. **메뉴명1**: 이유1</br>2. **메뉴명2**: 이유2</br>3. **메뉴명3**: 이유3</br>`;
   const promptList = [promptContent, promptForm];
   const result = await model.generateContent(promptList);
@@ -129,7 +131,7 @@ async function createGithubIssue(menu) {
     const weather = await getWeather(); // 날씨 가져오기
     const date = await getDate(); //  오늘 날짜 및 현재 시간 가져오기
     const recommendedMenu = await getRecommendedMenu(location, date, weather); // 메뉴 추천
-    await createGithubIssue(recommendedMenu); // GitHub Issue 생성
+    //await createGithubIssue(recommendedMenu); // GitHub Issue 생성
   } catch (error) {
     console.error("오류 발생:", error.message);
   }
