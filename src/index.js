@@ -80,7 +80,7 @@ async function getRecommendedMenu(location, date, weather) {
   });
 
   const promptContent = `오늘 ${date.year}.년${date.month}월.${date.date}일 ${date.hour}시 ${date.min}분 ${location}의 날씨는 ${weather.weatherCondition}이고 온도는 ${weather.temperature}도야. 날씨와 계절 그리고 시간을 고려해서 배달시켜 먹기 좋은 식사 메뉴 3가지를 다양하게 추천하고 메뉴명과 함께 간단한 추천 이유를 작성해.`;
-  const promptForm = `출력 형식은 다음과 같이 출력해. 1. 다음과 같은 마크다운 문법으로 출력해. "# 오늘 뭐 먹지?</br>yyyy년 d월 d일 {hour}시 {minutes}분 {location}의 날씨는 {temperature}℃이고, {weatherCondition}. {suggestedFoodText}.</br>1. **메뉴명1**: 이유1</br>2. **메뉴명2**: 이유2</br>3. **메뉴명3**: 이유3" 2. 시간에 어울리는 문구를 {suggestedFoodText}에 점심이면 "오늘의 점메추는" 저녁이면 "오늘의 저메추는"으로 시작해서 짧은 문장을 작성해. 3. {weatherCondition}에는 현재 날씨를 문구로 나타내.`;
+  const promptForm = `출력 형식은 다음과 같이 출력해. 1. 다음과 같은 마크다운 문법으로 출력해. "# 오늘 뭐 먹지?</br></br>yyyy년 d월 d일 {hour}시 {minutes}분 {location}의 날씨는 {temperature}℃이고, {weatherCondition}. {suggestedFoodText}.</br>1. **메뉴명1**: 이유1</br>2. **메뉴명2**: 이유2</br>3. **메뉴명3**: 이유3" 2. 시간에 어울리는 문구를 {suggestedFoodText}에 점심이면 "오늘의 점메추는" 저녁이면 "오늘의 저메추는"으로 시작해서 짧은 문장을 작성해. 3. {weatherCondition}에는 현재 날씨를 문구로 나타내.`;
   const promptList = [promptContent, promptForm];
   const result = await model.generateContent(promptList);
   const response = await result.response.text().trim();
