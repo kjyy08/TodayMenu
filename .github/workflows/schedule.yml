@@ -1,38 +1,37 @@
-# name: schedule
-# 
-# on:
-#   workflow_dispatch:
-#   schedule:
-#     - cron: "0 3 * * *" # 서울 시간 12:00 -> UTC 3:00
-#     - cron: "0 9 * * *" # 서울 시간 18:00 -> UTC 9:00
-# 
-# jobs:
-#   make-issue:
-#     runs-on: ubuntu-latest
-#     permissions:
-#       issues: write
-# 
-#     steps:
-#       - name: 타임존 설정
-#         run: sudo timedatectl set-timezone Asia/Seoul
-# 
-#       - name: 저장소 체크아웃
-#         uses: actions/checkout@v4
-# 
-#       - name: 노드 셋업
-#         uses: actions/setup-node@v4
-#         with:
-#           node-version: "20.x"
-# 
-#       - name: 패키지 설치
-#         run: npm install
-# 
-#       - name: index.js 실행
-#         env:
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#           GOOGLE_GEMINI_API_KEY: ${{ secrets.GOOGLE_GEMINI_API_KEY}}
-#           OWNER: kjyy08 # 깃허브 사용자 이름
-#           REPOSITORY: TodayMenu # 깃허브 리포지토리 이름
-# 
-#         run: node ./src/index.js
-# 
+name: schedule
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 3 * * *" # 서울 시간 12:00 -> UTC 3:00
+    - cron: "0 9 * * *" # 서울 시간 18:00 -> UTC 9:00
+
+jobs:
+  make-issue:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+
+    steps:
+#      - name: 타임존 설정
+#        run: sudo timedatectl set-timezone Asia/Seoul
+#
+#      - name: 저장소 체크아웃
+#        uses: actions/checkout@v4
+#
+#      - name: 노드 셋업
+#        uses: actions/setup-node@v4
+#        with:
+#          node-version: "20.x"
+#      
+#      - name: 패키지 설치
+#        run: npm install
+#
+#      - name: index.js 실행
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#          GOOGLE_GEMINI_API_KEY: ${{ secrets.GOOGLE_GEMINI_API_KEY}}
+#          OWNER: kjyy08 # 깃허브 사용자 이름
+#          REPOSITORY: TodayMenu # 깃허브 리포지토리 이름
+#      
+#        run: node ./src/index.js
